@@ -51,7 +51,6 @@
     function loadContactsFromServer() {
         console.log("loadContactsFromServer()");
     
-        // Clear the current contacts.
         contactArray.length = 0;
     
         xmlhttp = new XMLHttpRequest();
@@ -83,7 +82,6 @@
         document.getElementById("stateID").value = currentContact.state;
         document.getElementById("zipID").value = currentContact.zip;  
     
-        // Todo: Add additional fields.
         document.getElementById("statusID").innerHTML = "Viewing contact " + (currentContactIndex+1) + " of " + contactArray.length;
     }
     
@@ -93,8 +91,7 @@
         }
         currentContact = contactArray[currentContactIndex];
         viewCurrentContact();
-    
-        // Todo: Disable previous button when currentContactIndex equal to 0.
+
     }
     
     function next() {
@@ -104,20 +101,16 @@
         currentContact = contactArray[currentContactIndex];
         viewCurrentContact();
         
-        // Todo: Disable next button when there is no next item.
-        // Todo: Save changed items to contacts array and resort array.
     }
     
     function add() {
         console.log('add()**');
     
-        // Todo: Implement add functionality by inserting new element into array.
     }
     
     function remove() {
         console.log('remove()');
     
-        // Todo: Implement delete functionality by deleting element from array.
     }
     
     function ZipToCityState() {
@@ -127,7 +120,6 @@
         console.log("function getPlace(zip) { ... }");
         var xhr = new XMLHttpRequest();
     
-        // Register the embedded handler function
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var result = xhr.responseText;
@@ -144,7 +136,7 @@
     }
     
     function loadIndexAndContacts() {
-        // Load the Mustang index file.
+
         var indexRequest = new XMLHttpRequest();
         indexRequest.open('GET', 'https://mustang-index.azurewebsites.net/index.json');
         indexRequest.onload = function() {
@@ -161,13 +153,10 @@
     }
     
     function loadContacts() {
-        // Clear the current contactArray.
+
         contactArray.length = 0;
         loadingContact = 0;
     
-        // Note that W3C documentation and my experimentation indicate that each XMLHttpRequest callback function must be a 
-        // unique instance of a function. A better implmentation would have had an array of callback functions instead of a 
-        // recursive call to load
         if (contactURLArray.length > loadingContact) {
             loadNextContact(contactURLArray[loadingContact]);
         }
@@ -192,7 +181,6 @@
                 document.getElementById("statusID").innerHTML = "Contacts Loaded (" + contactURLArray.length + ")";
                 viewCurrentContact()
     
-                //Todo: Sort contacts array.
             }
         }
         contactRequest.send();
